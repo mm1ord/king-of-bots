@@ -25,6 +25,8 @@
 import ContentField from '../../../components/ContentField.vue'
 import { useStore } from 'vuex'
 import { ref } from 'vue'
+import router from '../../../router/index'
+
 
 export default {
     components: {
@@ -41,8 +43,14 @@ export default {
             store.dispatch("login", {
                 username: username.value,
                 password: password.value,
-                success(resp) {
-                    console.log(resp);
+                success() {
+                    store.dispatch("getinfo", {
+                        success() {
+                            router.push({ name: 'home' });
+                            console.log(store.state.user);
+                        }
+                    })
+
                 },
                 error() {
                     error_message = "用户名或密码错误";
