@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     private String username;
     private String password;
