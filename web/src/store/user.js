@@ -7,7 +7,7 @@ export default {
         photo: "",
         token: "",
         is_login: false,
-        pulling_info: true, //是否正在拉取信息
+        pulling_info: true,  // 是否正在从云端拉取信息
     },
     getters: {
     },
@@ -22,13 +22,13 @@ export default {
             state.token = token;
         },
         logout(state) {
-            state.id = ""
+            state.id = "";
             state.username = "";
             state.photo = "";
             state.token = "";
             state.is_login = false;
         },
-        updatePulingInfo(state, pulling_info) {
+        updatePullingInfo(state, pulling_info) {
             state.pulling_info = pulling_info;
         }
     },
@@ -79,11 +79,10 @@ export default {
             })
         },
         logout(context) {
-            localStorage.removeItem("jwt_token", context.token);
+            localStorage.removeItem("jwt_token");
             context.commit("logout");
         }
     },
     modules: {
     }
-
 }

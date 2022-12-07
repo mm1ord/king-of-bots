@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PkIndexView from '../views/pk/PkindexView'
-import RecordIndexView from '../views/record/RecordindexView'
-import RanklistIndexView from '../views/ranklist/RanklistindexView'
-import UserBotIndexView from '../views/user/bot/UserBotindexView'
+import PkIndexView from '../views/pk/PkIndexView'
+import RecordIndexView from '../views/record/RecordIndexView'
+import RanklistIndexView from '../views/ranklist/RanklistIndexView'
+import UserBotIndexView from '../views/user/bot/UserBotIndexView'
 import NotFound from '../views/error/NotFound'
 import UserAccountLoginView from '../views/user/account/UserAccountLoginView'
 import UserAccountRegisterView from '../views/user/account/UserAccountRegisterView'
-import store from '../store/index';
+import store from '../store/index'
 
 const routes = [
   {
@@ -42,16 +42,6 @@ const routes = [
     }
   },
   {
-    path: "/user/account/login/",
-    name: "user_account_login",
-    component: UserAccountLoginView,
-  },
-  {
-    path: "/user/account/register/",
-    name: "user_account_register",
-    component: UserAccountRegisterView,
-  },
-  {
     path: "/user/bot/",
     name: "user_bot_index",
     component: UserBotIndexView,
@@ -60,14 +50,33 @@ const routes = [
     }
   },
   {
+    path: "/user/account/login/",
+    name: "user_account_login",
+    component: UserAccountLoginView,
+    meta: {
+      requestAuth: false,
+    }
+  },
+  {
+    path: "/user/account/register/",
+    name: "user_account_register",
+    component: UserAccountRegisterView,
+    meta: {
+      requestAuth: false,
+    }
+  },
+  {
     path: "/404/",
     name: "404",
     component: NotFound,
+    meta: {
+      requestAuth: false,
+    }
   },
   {
     path: "/:catchAll(.*)",
-    redirect: "/404/",
-  },
+    redirect: "/404/"
+  }
 ]
 
 const router = createRouter({
@@ -75,10 +84,9 @@ const router = createRouter({
   routes
 })
 
-
 router.beforeEach((to, from, next) => {
   if (to.meta.requestAuth && !store.state.user.is_login) {
-    next({ name: "user_account_login" });
+    next({name: "user_account_login"});
   } else {
     next();
   }

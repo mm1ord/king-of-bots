@@ -4,9 +4,8 @@
     </div>
 </template>
 
-
 <script>
-import GameMap from './GameMap.vue';
+import GameMap from './GameMap.vue'
 
 export default {
     components: {
@@ -19,7 +18,6 @@ export default {
 div.playground {
     width: 60vw;
     height: 70vh;
-    /* background: lightblue; */
     margin: 40px auto;
 }
 </style>

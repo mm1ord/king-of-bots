@@ -4,20 +4,18 @@
             <div class="col-3">
                 <form @submit.prevent="register">
                     <div class="mb-3">
-                        <label for="username" class="form-label">用户名：</label>
-                        <input type="text" v-model="username" class="form-control" id="username" placeholder="请输入用户名">
+                        <label for="username" class="form-label">用户名</label>
+                        <input v-model="username" type="text" class="form-control" id="username" placeholder="请输入用户名">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">密码：</label>
-                        <input type="password" v-model="password" class="form-control" id="password"
-                            placeholder="请输入密码">
+                        <label for="password" class="form-label">密码</label>
+                        <input v-model="password" type="password" class="form-control" id="password" placeholder="请输入密码">
                     </div>
                     <div class="mb-3">
-                        <label for="confirmedPassword" class="form-label">确认密码：</label>
-                        <input type="password" v-model="confirmedPassword" class="form-control" id="confirmedPassword"
-                            placeholder="请再次输入密码">
+                        <label for="confirmedPassword" class="form-label">确认密码</label>
+                        <input v-model="confirmedPassword" type="password" class="form-control" id="confirmedPassword" placeholder="请再次输入密码">
                     </div>
-                    <div class="error-message"> {{ error_message }} </div>
+                    <div class="error-message">{{ error_message }}</div>
                     <button type="submit" class="btn btn-primary">提交</button>
                 </form>
             </div>
@@ -28,8 +26,8 @@
 <script>
 import ContentField from '../../../components/ContentField.vue'
 import { ref } from 'vue'
-import router from '@/router';
-import $ from 'jquery';
+import router from '../../../router/index'
+import $ from 'jquery'
 
 export default {
     components: {
@@ -48,16 +46,16 @@ export default {
                 data: {
                     username: username.value,
                     password: password.value,
-                    confirmedPassword: confirmedPassword.value
+                    confirmedPassword: confirmedPassword.value,
                 },
                 success(resp) {
                     if (resp.error_message === "success") {
-                        router.push({ name: "user_account_login" });
+                        router.push({name: "user_account_login"});
                     } else {
                         error_message.value = resp.error_message;
                     }
                 },
-            })
+            });
         }
 
         return {
@@ -65,20 +63,18 @@ export default {
             password,
             confirmedPassword,
             error_message,
-            register
+            register,
         }
     }
-
-
 }
 </script>
 
 <style scoped>
-div.error-message {
-    color: red;
-}
-
 button {
     width: 100%;
+}
+
+div.error-message {
+    color: red;
 }
 </style>
